@@ -1,3 +1,4 @@
+[![Sponsor](https://img.shields.io/badge/Sponsor-💖-orange)](https://github.com/sponsors/sumanjangili)
 # privacy-demo
 Indoscient lets owners monetize insights without ever exposing raw data - a privacy‑by‑design principles.
 Server holds the private key, derives the public key, and prints it.
