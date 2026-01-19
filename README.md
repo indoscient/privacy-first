@@ -48,10 +48,10 @@ npm run dev
 
 ## Features
 
- **End‑to‑end encryption** using X25519 + XSalsa20‑Poly1305 (libsodium crypto_box).
- **Ephemeral sender keys** per message → forward secrecy.
- **Zero‑knowledge transport** – only ciphertext, nonce and sender public key travel over HTTP.
- **TypeScript** on both client and server for safety and autocompletion.
+ End‑to‑end encryption using X25519 + XSalsa20‑Poly1305 (libsodium crypto_box).
+ Ephemeral sender keys per message → forward secrecy.
+ Zero‑knowledge transport – only ciphertext, nonce and sender public key travel over HTTP.
+ TypeScript on both client and server for safety and autocompletion.
 
 ---
 
