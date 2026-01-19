@@ -34,7 +34,7 @@ cd privacy-demo
 
 ## Quick start
 
-### Run locally
+Run locally
 
 1. Terminal 1 – start the API
 cd server
@@ -48,19 +48,19 @@ npm run dev
 
 ## Features
 
-* **End‑to‑end encryption** using X25519 + XSalsa20‑Poly1305 (libsodium crypto_box).
-* **Ephemeral sender keys** per message → forward secrecy.
-* **Zero‑knowledge transport** – only ciphertext, nonce and sender public key travel over HTTP.
-* **TypeScript** on both client and server for safety and autocompletion.
+ **End‑to‑end encryption** using X25519 + XSalsa20‑Poly1305 (libsodium crypto_box).
+ **Ephemeral sender keys** per message → forward secrecy.
+ **Zero‑knowledge transport** – only ciphertext, nonce and sender public key travel over HTTP.
+ **TypeScript** on both client and server for safety and autocompletion.
 
 ---
 
 ## Contributing
 
-Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to propose changes, run tests, and submit pull requests.
+Please read our CONTRIBUTING.md for guidelines on how to propose changes, run tests, and submit pull requests.
 
 ---
 
 ## License
 
-This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License – see the LICENSE file for details.
