@@ -37,7 +37,7 @@ Unacceptable behavior includes, but is not limited to:
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project maintainers at **security@proton.me**.
+reported by contacting the project maintainers at **contact@sumanjangili.com**.
 All complaints will be reviewed and investigated promptly and fairly.
 
 Maintainers are empowered to:

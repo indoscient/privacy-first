@@ -27,8 +27,8 @@ This demo shows how a browser can encrypt a message with a recipient’s public 
 ### 1️⃣ Clone the repo  
 
 ```bash
-git clone https://github.com/sumanjangili/privacy-demo.git
-cd privacy-demo
+git clone https://github.com/sumanjangili/privacy-first.git
+cd privacy-first
 
 ---
 
