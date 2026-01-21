@@ -1,5 +1,4 @@
 [![Sponsor Me](https://img.shields.io/badge/Sponsor-💖-orange)](https://github.com/sponsors/sumanjangili)
-
 Help me build faster, more secure libraries for the community
 
 # 🔐 Privacy‑First Encrypted Message Demo  
@@ -40,10 +39,15 @@ This demo shows how a browser can encrypt a message with a recipient’s public 
    git clone https://github.com/sumanjangili/privacy-first.git
 
 2. Navigate to the project directory:
+
    cd privacy-first
+
 3. Install dependencies:
+
    npm install libsodium-wrappers
+
    npm install --save-dev ts-node typescript @types/node
+
    npm install --save-dev @types/libsodium-wrappers
 
 Usage
@@ -52,6 +56,7 @@ Usage
    cd server && npm run dev
 2. Terminal 1 – start the React dev server:
    cd client && npm run dev
+
 
 Contributing
 
