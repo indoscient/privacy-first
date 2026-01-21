@@ -8,7 +8,7 @@ import './index.css';
    ------------------------------------------------------------- */
 // The server prints its public key on start‑up. Paste that exact string here.
 const SERVER_PUBLIC_KEY_B64 =
-  'USQkX2UzIJafSvLaAFSm1bREEPoX/aFjB6S0OdLbEGU='; // <-- replace with the real key
+  'sFCuzaAkERysgkxzN3/fnTXWxStH7M3E3qjO2wwepUs='; // <-- replace with the real key
 
 // The backend endpoint (fallback to local dev server)
 const SERVER_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:4000/decrypt';

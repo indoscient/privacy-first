@@ -1,4 +1,6 @@
-[![Sponsor](https://img.shields.io/badge/Sponsor-💖-orange)](https://github.com/sponsors/sumanjangili)
+[![Sponsor Me](https://img.shields.io/badge/Sponsor-💖-orange)](https://github.com/sponsors/sumanjangili)
+
+Help me build faster, more secure libraries for the community
 
 # 🔐 Privacy‑First Encrypted Message Demo  
 *A tiny end‑to‑end encrypted mini‑app built with React, Vite, Node/Express and libsodium‑wrappers.*
@@ -14,6 +16,15 @@ This demo shows how a browser can encrypt a message with a recipient’s public 
 
 ---
 
+## Features
+   
+- **End-to-end encryption** using X25519 + XSalsa20‑Poly1305 (libsodium crypto_box).
+- **Ephemeral sender keys** per message → forward secrecy.
+- **Zero‑knowledge transport** – only ciphertext, nonce and sender public key travel over HTTP.
+- **TypeScript** on both client and server for safety and autocompletion.
+
+---
+
 ## Prerequisites  
 
 - **Node ≥ 18** (native ESM support)  
@@ -22,45 +33,30 @@ This demo shows how a browser can encrypt a message with a recipient’s public 
 
 ---
 
-## Installation  
+## Installation
 
-### 1️⃣ Clone the repo  
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sumanjangili/privacy-first.git
 
-```bash
-git clone https://github.com/sumanjangili/privacy-first.git
-cd privacy-first
+2. Navigate to the project directory:
+   cd privacy-first
+3. Install dependencies:
+   npm install libsodium-wrappers
+   npm install --save-dev ts-node typescript @types/node
+   npm install --save-dev @types/libsodium-wrappers
 
----
+Usage
 
-## Quick start
+1. Terminal 1 – start the API:
+   cd server && npm run dev
+2. Terminal 1 – start the React dev server:
+   cd client && npm run dev
 
-Run locally
-
-1. Terminal 1 – start the API
-cd server
-npx ts-node-dev src/index.ts
-
-2. Terminal 2 – start the React dev server
-cd ../client
-npm run dev
-
----
-
-## Features
-
- End‑to‑end encryption using X25519 + XSalsa20‑Poly1305 (libsodium crypto_box).
- Ephemeral sender keys per message → forward secrecy.
- Zero‑knowledge transport – only ciphertext, nonce and sender public key travel over HTTP.
- TypeScript on both client and server for safety and autocompletion.
-
----
-
-## Contributing
+Contributing
 
 Please read our CONTRIBUTING.md for guidelines on how to propose changes, run tests, and submit pull requests.
 
----
-
-## License
+License
 
 This project is licensed under the MIT License – see the LICENSE file for details.
