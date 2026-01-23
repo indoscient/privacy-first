@@ -1,7 +1,7 @@
 {
-  "name": "privacy-demo-client",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@sumanjangili/privacy-first-client",
+  "version": "0.1.4",
+  "__comment": "Client side of the privacy‑first demo – React + TypeScript + Vite",
   "scripts": {
     "lint": "eslint src --ext .ts,.tsx",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
@@ -31,10 +31,28 @@
     "typescript": "^5.9.3",
     "vite": "^7.2.2"
   },
-  "description": "",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+  "description": "A privacy-first client built with React + TypeScript + Vite",
+  "main": "dist/index.html",
+  "keywords": [
+    "type script",
+    "react",
+    "vite"
+  ],
+  "author": "Suman Jangili",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumanjangili/privacy-first.git",
+    "directory": "client"
+  },
+  "bugs": {
+    "url": "https://github.com/sumanjangili/privacy-first/issues"
+  },
+  "homepage": "https://github.com/sumanjangili/privacy-first",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
