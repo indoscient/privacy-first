@@ -1,7 +1,7 @@
 {
-  "name": "privacy-demo-server",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@sumanjangili/privacy-first-server",
+  "version": "0.1.1",
+  "__comment": "Server side of the privacy‑first demo – tiny Express API",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "gen:keypair": "ts-node src/generate-keypair.ts",
@@ -23,10 +23,28 @@
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
   },
-  "description": "",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+  "description": "A tiny Express server for the privacy‑first demo (handles key generation, encryption, etc.)",
+  "main": "dist/index.js",
+  "keywords": [
+    "express",
+    "typescript",
+    "libsodium"
+  ],
+  "author": "Suman Jangili",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumanjangili/privacy-first.git",
+    "directory": "server"
+  },
+  "bugs": {
+    "url": "https://github.com/sumanjangili/privacy-first/issues"
+  },
+  "homepage": "https://github.com/sumanjangili/privacy-first",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }

@@ -7,7 +7,13 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "typeRoots": ["./node_modules/@types"]   // omit "./typings" unless you added custom .d.ts files
+    "outDir": "./dist",
+    "sourceMap": true,
+    "noEmitOnError": true,
+    "declaration": true,
+    "incremental": true,
+    "typeRoots": ["./node_modules/@types", "./typings"]   // omit "./typings" unless you added custom .d.ts files
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"] 
 }
