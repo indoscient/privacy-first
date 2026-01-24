@@ -1,6 +1,6 @@
 {
-  "name": "@sumanjangili/privacy-first-server",
-  "version": "0.1.1",
+  "name": "@suman-jangili/privacy-first-server",
+  "version": "0.1.5",
   "__comment": "Server side of the privacy‑first demo – tiny Express API",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
@@ -42,9 +42,7 @@
   },
   "homepage": "https://github.com/sumanjangili/privacy-first",
   "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  }
+    "dist",
+    "README.md"
+  ]
 }

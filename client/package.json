@@ -1,6 +1,6 @@
 {
-  "name": "@sumanjangili/privacy-first-client",
-  "version": "0.1.4",
+  "name": "@suman-jangili/privacy-first-client",
+  "version": "0.1.7",
   "__comment": "Client side of the privacy‑first demo – React + TypeScript + Vite",
   "scripts": {
     "lint": "eslint src --ext .ts,.tsx",
@@ -31,10 +31,10 @@
     "typescript": "^5.9.3",
     "vite": "^7.2.2"
   },
-  "description": "A privacy-first client built with React + TypeScript + Vite",
+  "description": "A privacy‑first client built with React + TypeScript + Vite",
   "main": "dist/index.html",
   "keywords": [
-    "type script",
+    "typescript",
     "react",
     "vite"
   ],
@@ -50,9 +50,7 @@
   },
   "homepage": "https://github.com/sumanjangili/privacy-first",
   "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  }
+    "dist",
+    "README.md"
+  ]
 }
