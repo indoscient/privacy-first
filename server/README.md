@@ -21,7 +21,7 @@ It provides a tiny API for generating key pairs, encrypting, and decrypting data
 ---
 
 ### Installation
-*From npm:*
+From npm:
 ```bash
 npm install @suman-jangili/privacy-first-server
 ```
@@ -35,7 +35,10 @@ git clone https://github.com/sumanjangili/privacy-first.git
 cd privacy-first/server
 npm ci        # installs exact versions from lockfile
 ```
-**Running Locally**
+
+---
+
+### Running Locally
 1. Build the TypeScript sources
    ```bash
    npm run build
@@ -58,6 +61,8 @@ npm ci        # installs exact versions from lockfile
 - **POST /decrypt**	Body: { publicKey, secretKey, ciphertext, nonce } → Returns { message }.
 - All payloads and responses are JSON‑encoded. Errors are returned with a 400 status and an error field describing the problem.
 
+---
+
 #### Scripts Overview
 - **dev**	Runs ts-node-dev for live reload while developing.
 - **build**	Compiles TypeScript to dist/ (tsc).
@@ -66,6 +71,7 @@ npm ci        # installs exact versions from lockfile
   ```bash
    npm run gen:keypair
   ```
+
 ---
 
 ### Building & Publishing
