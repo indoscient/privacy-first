@@ -1,10 +1,10 @@
-# 🤝 Contributing to the Privacy‑First Encrypted Message Demo
+## 🤝 Contributing to the Privacy‑First Encrypted Message Demo
 
 Thank you for your interest in improving this project! This guide explains how to set up a development environment, follow our coding standards, and submit changes safely.
 
 ---
 
-## Table of Contents
+### Table of Contents
 
 1. [Code of Conduct](#code-of-conduct)
 2. [Getting Started](#getting-started)
@@ -18,13 +18,13 @@ Thank you for your interest in improving this project! This guide explains how t
 
 ---
 
-## Code of Conduct
+### Code of Conduct
 
 All participants must adhere to the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). By contributing you agree to treat everyone with respect and follow the outlined standards.
 
 ---
 
-## Getting Started
+### Getting Started
 
 1. **Fork the repository** on GitHub.
 2. **Clone your fork** locally:
@@ -32,3 +32,6 @@ All participants must adhere to the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). By
    ```bash
    git clone https://github.com/sumanjangili/privacy-first.git
    cd privacy-first
+   ```
+   
+---
