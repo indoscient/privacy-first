@@ -1,6 +1,6 @@
 {
   "name": "@suman-jangili/privacy-first-client",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "__comment": "Client side of the privacy‑first demo – React + TypeScript + Vite",
   "scripts": {
     "lint": "eslint src --ext .ts,.tsx",

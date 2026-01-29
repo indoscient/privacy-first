@@ -59,7 +59,6 @@ Changes to any src/**/*.tsx or src/**/*.ts file trigger an automatic reload.
 ---
 
 ### Scripts Overview
-`Script	Description`
 - **dev**	Starts Vite in development mode with hot‑module replacement.
 - **build**	Bundles the app for production (vite build).
 - **preview**	Serves the dist/ folder locally (vite preview).
@@ -72,10 +71,12 @@ Changes to any src/**/*.tsx or src/**/*.ts file trigger an automatic reload.
 ### Testing Types
 The project ships type declarations out of the box (via the compiled .d.ts files).
 To verify they work in a consuming project:
+```bash
 import { encrypt, decrypt } from '@suman-jangili/privacy-first-client';
 // Example usage (pseudo‑code)
 const ciphertext = await encrypt('hello world');
 const plaintext = await decrypt(ciphertext);
+```
 If you encounter any type errors, feel free to open an issue.
 
 ---
@@ -103,6 +104,5 @@ MIT © Suman Jangili. See the LICENSE file for details.
 
 ### Related Projects
 - [Server](https://www.npmjs.com/package/@suman-jangili/privacy-first-server) – a tiny Express API that handles key generation and encryption.
-- [Full Demo Repo](https://github.com/sumanjangili/privacy-first)
+- [See Full Demo Repo](https://github.com/sumanjangili/privacy-first)
 
----

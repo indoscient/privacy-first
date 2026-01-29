@@ -115,6 +115,5 @@ MIT © Suman Jangili. See the LICENSE file for full terms.
 
 #### Related Projects
 - [Client](https://www.npmjs.com/package/@suman-jangili/privacy-first-client) – the React front‑end that talks to this API.
-- [Full Demo Repo](https://github.com/sumanjangili/privacy-first)
+- [See Full Demo Repo](https://github.com/sumanjangili/privacy-first)
 
----
