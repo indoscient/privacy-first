@@ -11,10 +11,12 @@ Desktop.ini
 *.sublime-workspace
 *.sublime-project
 *.code-workspace
+*.pem
 
 # ==== Node / npm ===================================================
 node_modules/
-package-lock.json          # keep if you want deterministic installs; otherwise remove
+client/node_modules
+server/node_modules
 yarn.lock                  # same comment as above
 pnpm-lock.yaml
 
@@ -35,6 +37,13 @@ vite.config.ts.cache
 # ==== TypeScript ===========================================================
 *.tsbuildinfo
 tsconfig.tsbuildinfo
+
+# ==== Environment files ======================
+.env
+.env.local
+.env.*.local
+client/.env
+server/.env
 
 # ==== Test / Coverage ==============================================
 coverage/

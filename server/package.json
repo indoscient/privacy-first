@@ -1,6 +1,6 @@
 {
-  "name": "@suman-jangili/privacy-first-server",
-  "version": "0.1.6",
+  "name": "@indoscient/privacy-first-server",
+  "version": "0.1.7",
   "__comment": "Server side of the privacy‑first demo – tiny Express API",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
@@ -34,13 +34,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sumanjangili/privacy-first.git",
+    "url": "git+https://github.com/indoscient/privacy-first.git",
     "directory": "server"
   },
   "bugs": {
-    "url": "https://github.com/sumanjangili/privacy-first/issues"
+    "url": "https://github.com/indoscient/privacy-first/issues"
   },
-  "homepage": "https://github.com/sumanjangili/privacy-first",
+  "homepage": "https://github.com/indoscient/privacy-first",
   "files": [
     "dist",
     "README.md"

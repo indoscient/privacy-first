@@ -14,7 +14,7 @@ section() {
 }
 
 # ------------------------------------------------------------------
-# 1️⃣ Root‑level artefacts (outside client/server)
+# 1 Root‑level artefacts (outside client/server)
 # ------------------------------------------------------------------
 section "Root‑level caches & logs"
 rm -f .eslintcache         # ESLint cache
@@ -22,13 +22,13 @@ rm -f .tsbuildinfo        # TypeScript incremental build info
 rm -f npm-debug.log yarn-error.log
 
 # ----------------------------------------------------------
-# 2️⃣ Test & coverage artefacts
+# 2️ Test & coverage artefacts
 # ---------------------------------------------------------------
 section "Test & coverage directories"
 rm -rf coverage .nyc_output .vitest .jest
 
 # -------------------------------------------------------
-# 3️⃣ OS / editor junk (recursive)
+# 3️ OS / editor junk (recursive)
 # ------------------------------------------------------------------
 section "OS / editor junk"
 # Files
@@ -48,7 +48,7 @@ find . -type d \( \
 \) -prune -print -exec rm -rf {} +
 
 # -------------------------------------------------------------
-# 4️⃣ Per‑project clean‑up (client & server)
+# 4️ Per‑project clean‑up (client & server)
 # --------------------------------------------------------
 for dir in client server; do
    if [[ -d "$dir" ]]; then
@@ -75,7 +75,7 @@ for dir in client server; do
 done
 
 # ------------------------------------------------------------------
-# 5️⃣ Final tidy‑up – remove empty directories left behind
+# 5️ Final tidy‑up – remove empty directories left behind
 # ------------------------------------------------------------------
 section "Final tidy‑up"
 find . -type d -empty -delete

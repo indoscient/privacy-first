@@ -32,7 +32,7 @@ This demo shows how a browser can encrypt a message with a recipient’s public 
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/sumanjangili/privacy-first.git
+   git clone https://github.com/indoscient/privacy-first.git
    ```
 2. Navigate to the project directory:
    ```bash

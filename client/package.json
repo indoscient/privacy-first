@@ -1,6 +1,6 @@
 {
-  "name": "@suman-jangili/privacy-first-client",
-  "version": "0.1.8",
+  "name": "@indoscient/privacy-first-client",
+  "version": "0.1.9",
   "__comment": "Client side of the privacy‑first demo – React + TypeScript + Vite",
   "scripts": {
     "lint": "eslint src --ext .ts,.tsx",
@@ -12,7 +12,7 @@
     "start": "vite"
   },
   "dependencies": {
-    "libsodium-wrappers": "^0.7.15",
+    "libsodium-wrappers": "0.7.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -42,13 +42,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sumanjangili/privacy-first.git",
+    "url": "git+https://github.com/indoscient/privacy-first.git",
     "directory": "client"
   },
   "bugs": {
-    "url": "https://github.com/sumanjangili/privacy-first/issues"
+    "url": "https://github.com/indoscient/privacy-first/issues"
   },
-  "homepage": "https://github.com/sumanjangili/privacy-first",
+  "homepage": "https://github.com/indoscient/privacy-first",
   "files": [
     "dist",
     "README.md"
