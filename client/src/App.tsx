@@ -3,64 +3,76 @@ import React, { useEffect, useState } from 'react';
 import { initCrypto, encryptMessage } from './crypto';
 import './index.css';
 
-/* -------------------------------------------------------------
-   Configuration
-   ------------------------------------------------------------- */
-// The server prints its public key on start‑up. Paste that exact string here.
-const SERVER_PUBLIC_KEY_B64 =
-  'sFCuzaAkERysgkxzN3/fnTXWxStH7M3E3qjO2wwepUs='; // <-- replace with the real key
-
-// The backend endpoint (fallback to local dev server)
+const SERVER_PUBLIC_KEY_B64 = import.meta.env.VITE_SERVER_PUBLIC_KEY ?? '';
 const SERVER_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:4000/decrypt';
 
 function App() {
   const [msg, setMsg] = useState('');
   const [result, setResult] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // Initialise libsodium once when the component mounts
   useEffect(() => {
+    if (!SERVER_PUBLIC_KEY_B64) {
+      setError('⚠️ VITE_SERVER_PUBLIC_KEY not set in client/.env');
+    }
     initCrypto()
-      .then(() => setReady(true))
-      .catch(err => console.error('libsodium init failed:', err));
+      .then(() => {
+        setReady(true);
+        if (SERVER_PUBLIC_KEY_B64) {
+          console.log('✅ Crypto initialized with public key:', SERVER_PUBLIC_KEY_B64.slice(0, 16) + '...');
+        }
+      })
+      .catch(err => setError('libsodium init failed: ' + err.message));
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!ready) return; // libsodium not ready yet
+    if (!ready || !SERVER_PUBLIC_KEY_B64) return;
 
-    // 1️⃣ Encrypt with the server’s public key (sealed box)
-    const ciphertext = encryptMessage(msg, SERVER_PUBLIC_KEY_B64);
-    console.log('🔐 ciphertext to send →', ciphertext);
- 
-    // 2️⃣ POST to the server
-    const resp = await fetch(SERVER_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ciphertext })
-    });
+    try {
+      setError(null);
+      const ciphertext = encryptMessage(msg, SERVER_PUBLIC_KEY_B64);
+      console.log('🔐 Encrypted ciphertext:', ciphertext);
 
-    // 3️⃣ Show the plaintext returned by the server
-    const data = await resp.json();
-    setResult(data.plaintext);
+      const resp = await fetch(SERVER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ciphertext })
+      });
+
+      if (!resp.ok) {
+        throw new Error(`HTTP ${resp.status}: ${await resp.text()}`);
+      }
+
+      const data = await resp.json();
+      setResult(data.plaintext);
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      setError(errorMessage);
+      setResult(null);
+    }
   };
 
   return (
     <div className="container">
       <h1>🔐 End‑to‑End Demo</h1>
 
+      {error && <p className="error">{error}</p>}
+
       <form onSubmit={handleSubmit}>
         <textarea
           placeholder="Enter a secret message…"
-        value={msg}
+          value={msg}
           onChange={e => setMsg(e.target.value)}
           rows={4}
           cols={60}
           required
+          disabled={!ready || !SERVER_PUBLIC_KEY_B64}
         />
         <br />
-        <button type="submit" disabled={!ready}>
-          Encrypt &amp; Send
+        <button type="submit" disabled={!ready || !SERVER_PUBLIC_KEY_B64}>
+          {ready ? 'Encrypt & Send' : 'Initializing...'}
         </button>
       </form>
 
@@ -68,6 +80,12 @@ function App() {
         <div className="result">
           <h2>Decrypted on server:</h2>
           <pre>{result}</pre>
+        </div>
+      )}
+
+      {!SERVER_PUBLIC_KEY_B64 && (
+        <div className="hint">
+          <p><strong>Note:</strong> Set <code>VITE_SERVER_PUBLIC_KEY</code> in client/.env</p>
         </div>
       )}
     </div>
