@@ -12,6 +12,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
     "express": "^4.21.2",
+    "express-rate-limit": "^8.7.1",
+    "helmet": "^8.3.0",
     "libsodium-wrappers": "^0.7.16"
   },
   "devDependencies": {

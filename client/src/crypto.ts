@@ -1,29 +1,31 @@
 // client/src/crypto.ts
+
 import sodium from 'libsodium-wrappers';
+
+let isInitialized = false;
 
 /**
  * Initialise libsodium – must be awaited before any crypto calls.
  */
 export async function initCrypto(): Promise<void> {
-  await sodium.ready;               // loads the WASM backend
+  if (!isInitialized) {
+    await sodium.ready;
+    isInitialized = true;
+  }
 }
 
 /**
- * Encrypt a UTF‑8 string with the recipient’s **public** key.
- *
- * We use a *sealed box* (`crypto_box_seal`) because it only needs the
- * recipient’s public key – the server can decrypt with its private key
- * without the client having to manage a nonce or a sender key pair.
+ * Encrypt a UTF‑8 string with the recipient's **public** key.
  *
  * @param plaintext   Message to encrypt
- * @param pubKeyBase64 Recipient’s public key (Base‑64, ORIGINAL variant)
+ * @param pubKeyBase64 Recipient's public key (Base‑64, ORIGINAL variant)
  * @returns Base‑64‑encoded ciphertext
  */
 export function encryptMessage(
   plaintext: string,
   pubKeyBase64: string
 ): string {
-  // Decode the server’s public key
+  // Decode the server's public key
   const pubKey = sodium.from_base64(
     pubKeyBase64,
     sodium.base64_variants.ORIGINAL

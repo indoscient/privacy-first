@@ -1,7 +1,7 @@
 
 📄 `privacy‑first‑server`
 
-## @suman-jangili/privacy‑first‑server
+## @indoscient/privacy‑first‑server
 A minimal **privacy‑first** backend built with **Express**, **TypeScript**, and **libsodium‑wrappers**.  
 It provides a tiny API for generating key pairs, encrypting, and decrypting data—perfect for pairing with the companion client package (`@suman-jangili/privacy‑first‑client`).
 
@@ -23,15 +23,15 @@ It provides a tiny API for generating key pairs, encrypting, and decrypting data
 ### Installation
 From npm:
 ```bash
-npm install @suman-jangili/privacy-first-server
+npm install @indoscient/privacy-first-server
 ```
 **Or** add it as a dependency in your own project
 ```bash
-npm i @suman-jangili/privacy-first-server
+npm i @indoscient/privacy-first-server
 ```
 To develop the server yourself, clone the repo and install dev dependencies:
 ```bash
-git clone https://github.com/sumanjangili/privacy-first.git
+git clone https://github.com/indoscient/privacy-first.git
 cd privacy-first/server
 npm ci        # installs exact versions from lockfile
 ```
@@ -114,6 +114,6 @@ MIT © Suman Jangili. See the LICENSE file for full terms.
 ---
 
 #### Related Projects
-- [Client](https://www.npmjs.com/package/@suman-jangili/privacy-first-client) – the React front‑end that talks to this API.
-- [See Full Demo Repo](https://github.com/sumanjangili/privacy-first)
+- [Client](https://www.npmjs.com/package/@indoscient/privacy-first-client) – the React front‑end that talks to this API.
+- [See Full Demo Repo](https://github.com/indoscient/privacy-first)
 

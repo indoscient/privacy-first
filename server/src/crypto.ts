@@ -1,47 +1,42 @@
 // server/src/crypto.ts
 
+import sodium from 'libsodium-wrappers';
+
+/** Cached sodium module — set once by initCrypto(). */
+let sodiumModule: typeof sodium | null = null;
+
 /**
- * Load libsodium‑wrappers and wait until the WASM backend is ready.
- * The return type is the module itself, captured via `typeof import(...)`.
+ * Load libsodium-wrappers and wait until the WASM backend is ready.
+ * Safe to call multiple times — returns the cached instance.
  */
-export async function initCrypto(): Promise<
-  typeof import('libsodium-wrappers')
-> {
-  const sodium = await import('libsodium-wrappers');
+export async function initCrypto(): Promise<typeof sodium> {
+  if (sodiumModule) return sodiumModule;
+  
   await sodium.ready;
-  return sodium;
+  sodiumModule = sodium;
+  return sodiumModule;
 }
 
 /**
- * Decrypt a sealed‑box ciphertext that was produced on the client with
- * `crypto_box_seal(message, serverPublicKey)`.
+ * Decrypt a sealed-box ciphertext produced by `crypto_box_seal`.
  *
- * @param cipherB64   Base‑64‑encoded sealed ciphertext from the client
- * @param privKeyB64  Base‑64‑encoded server private key (stored in .env)
- * @returns           Plain‑text string
+ * @param cipherB64  Base-64-encoded sealed ciphertext from the client
+ * @param privKeyB64 Base-64-encoded server private key (from .env)
  */
-export function decryptMessage(
+export async function decryptMessage(
   cipherB64: string,
   privKeyB64: string
-): string {
-  // The module has already been initialised in index.ts, so we can require it synchronously.
-  const sodium = require('libsodium-wrappers') as typeof import('libsodium-wrappers');
+): Promise<string> {
+  const sodium = await initCrypto();
 
-  // ---------- Decode inputs ----------
   const cipher = sodium.from_base64(cipherB64, sodium.base64_variants.ORIGINAL);
-  const privKey = sodium.from_base64(
-    privKeyB64,
-    sodium.base64_variants.ORIGINAL
-  );
+  const privKey = sodium.from_base64(privKeyB64, sodium.base64_variants.ORIGINAL);
 
-  // ---------- Derive the public key from the private key ----------
-  // libsodium stores keys as raw Uint8Array scalars; the public key is the scalar multiplication of the base point.
+  // Derive the matching public key from the private key
   const pubKey = sodium.crypto_scalarmult_base(privKey);
 
-  // ---------- Perform sealed‑box decryption ----------
-  // Need (ciphertext, recipientPublicKey, recipientPrivateKey)
+  // Open the sealed box
   const plain = sodium.crypto_box_seal_open(cipher, pubKey, privKey);
 
-  // ---------- Convert Uint8Array → UTF‑8 string ----------
   return sodium.to_string(plain);
 }

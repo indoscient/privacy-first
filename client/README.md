@@ -1,6 +1,6 @@
 📄 `privacy‑first‑client`
 
-## @suman-jangili/privacy‑first‑client
+## @indoscient/privacy‑first‑client
 A **privacy‑first** front‑end demo built with **React**, **TypeScript**, and **Vite**.  
 It showcases how to use `libsodium-wrappers` in the browser for end‑to‑end encryption while communicating with the companion server package (`@suman-jangili/privacy‑first‑server`).
 
@@ -22,15 +22,15 @@ It showcases how to use `libsodium-wrappers` in the browser for end‑to‑end e
 ### Installation
 From npm:
 ```bash
-npm install @suman-jangili/privacy-first-client
+npm install @indoscient/privacy-first-client
 ```
 **OR** add it as a dependency in your own project
 ```bash
-npm i @suman-jangili/privacy-first-client
+npm i @indoscient/privacy-first-client
 ```
 If you want to run the demo locally, clone the repo and install dev dependencies:
 ```bash
-git clone https://github.com/sumanjangili/privacy-first.git
+git clone https://github.com/indoscient/privacy-first.git
 cd privacy-first/client
 npm ci        # installs exact versions from lockfile
 ```
@@ -72,7 +72,7 @@ Changes to any src/**/*.tsx or src/**/*.ts file trigger an automatic reload.
 The project ships type declarations out of the box (via the compiled .d.ts files).
 To verify they work in a consuming project:
 ```bash
-import { encrypt, decrypt } from '@suman-jangili/privacy-first-client';
+import { encrypt, decrypt } from '@indoscient/privacy-first-client';
 // Example usage (pseudo‑code)
 const ciphertext = await encrypt('hello world');
 const plaintext = await decrypt(ciphertext);
@@ -103,6 +103,6 @@ MIT © Suman Jangili. See the LICENSE file for details.
 ---
 
 ### Related Projects
-- [Server](https://www.npmjs.com/package/@suman-jangili/privacy-first-server) – a tiny Express API that handles key generation and encryption.
-- [See Full Demo Repo](https://github.com/sumanjangili/privacy-first)
+- [Server](https://www.npmjs.com/package/@indoscient/privacy-first-server) – a tiny Express API that handles key generation and encryption.
+- [See Full Demo Repo](https://github.com/indoscient/privacy-first)
 

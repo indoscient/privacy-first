@@ -26,33 +26,36 @@ function App() {
       .catch(err => setError('libsodium init failed: ' + err.message));
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!ready || !SERVER_PUBLIC_KEY_B64) return;
+  // client/src/App.tsx — updated handleSubmit
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!ready || !SERVER_PUBLIC_KEY_B64) return;
 
-    try {
-      setError(null);
-      const ciphertext = encryptMessage(msg, SERVER_PUBLIC_KEY_B64);
-      console.log('🔐 Encrypted ciphertext:', ciphertext);
+  try {
+    setError(null);
+    const ciphertext = encryptMessage(msg, SERVER_PUBLIC_KEY_B64);
 
-      const resp = await fetch(SERVER_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ciphertext })
-      });
+    const resp = await fetch(SERVER_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': import.meta.env.VITE_API_KEY ?? '',
+      },
+      body: JSON.stringify({ ciphertext }),
+    });
 
-      if (!resp.ok) {
-        throw new Error(`HTTP ${resp.status}: ${await resp.text()}`);
-      }
+    if (resp.status === 401) throw new Error('Unauthorized — check your API key');
+    if (resp.status === 429) throw new Error('Rate limit hit — try again shortly');
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${await resp.text()}`);
 
-      const data = await resp.json();
-      setResult(data.plaintext);
-    } catch (err: unknown) {
-      const errorMessage = err instanceof Error ? err.message : String(err);
-      setError(errorMessage);
-      setResult(null);
-    }
-  };
+    const data = await resp.json();
+    setResult(data.plaintext);
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : String(err);
+    setError(errorMessage);
+    setResult(null);
+  }
+};
 
   return (
     <div className="container">
