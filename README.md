@@ -10,42 +10,70 @@ Help me build faster, more secure libraries for the community
 ---
 
 ### What it does  
-This demo shows how a browser can encrypt a message with a recipient’s public key, send the ciphertext to a server, and have the server decrypt it with its private key—all without ever transmitting the plaintext. It uses **libsodium‑wrappers**, the modern, audited NaCl implementation, keeping the cryptography solid while the code stays short.
+This demo shows how a browser can encrypt a message with a recipient's public key, send the ciphertext to a server, and have the server decrypt it with its private key—all without ever transmitting the plaintext. It uses **libsodium‑wrappers**, the modern, audited NaCl implementation, keeping the cryptography solid while the code stays short.
 
 ---
 
 ### Features   
-- **End-to-end encryption** using X25519 + XSalsa20‑Poly1305 (libsodium crypto_box).
-- **Ephemeral sender keys** per message → forward secrecy.
-- **Zero‑knowledge transport** – only ciphertext, nonce and sender public key travel over HTTP.
+- **End-to-end encryption** using X25519 + XSalsa20‑Poly1305 (libsodium sealed-box `crypto_box_seal`).
+- **Forward secrecy** — ephemeral keys generated per message.
+- **Zero-knowledge transport** – only ciphertext travels over HTTP (no plaintext, nonces, or key material exposed).
+- **API authentication** — API key middleware protects decryption endpoints.
+- **Rate limiting** — prevents abuse (20 req/15min on `/decrypt`).
+- **Security headers** — Helmet.js enforces HSTS, X-Frame-Options, etc.
 - **TypeScript** on both client and server for safety and autocompletion.
 
 ---
 
+
+---
+
 ### Prerequisites  
-- **Node ≥ 18** (native ESM support)  
+- **Node ≥ 18** (native ESM support)  
 - **npm** (or yarn/pnpm)  
-- Docker (optional – see the Docker section)  
+- Git  
 
 ---
 
 ### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/indoscient/privacy-first.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd privacy-first
-   ```
-3. Install dependencies:
-   ```bash
-   npm install libsodium-wrappers
-   npm install --save-dev ts-node typescript @types/node
-   npm install --save-dev @types/libsodium-wrappers
-   ```
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/indoscient/privacy-first.git
+cd privacy-first
+
+# 2. Install client dependencies
+cd client && npm install
+
+# 3. Install server dependencies
+cd ../server && npm install
+
+# 4. Generate server key pair (run once)
+npm run gen:keypair
+
+# 5. Copy outputs to .env files
+# server/.env: PRIVATE_KEY, API_KEY, ALLOWED_ORIGINS
+# client/.env: VITE_SERVER_PUBLIC_KEY, VITE_API_KEY, VITE_API_URL
+```
 
 ---
+
+### Configuration
+Create .env files before starting:
+```bash
+server/.env:
+
+PRIVATE_KEY=<from gen:keypair output>
+API_KEY=<random 32-byte hex string>
+ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000
+PORT=4000
+
+client/.env:
+
+VITE_SERVER_PUBLIC_KEY=<from gen:keypair output>
+VITE_API_URL=http://localhost:4000/decrypt
+VITE_API_KEY=<same value as server/API_KEY>
+```
 
 ### Usage
 1. Terminal 1 – start the API:
@@ -56,6 +84,16 @@ This demo shows how a browser can encrypt a message with a recipient’s public 
    ```bash
    cd client && npm run dev
    ```
+
+---
+
+### Documentation
+
+| Resource | Description |
+|----------|-------------|
+| **[Client README](./client/README.md)** | Front-end setup, scripts, and usage |
+| **[Server README](./server/README.md)** | Back-end endpoints, security controls |
+| **[Privacy Design Decisions](./PRIVACY.md)** | Privacy-by-design controls and data flow |
 
 ---
 
