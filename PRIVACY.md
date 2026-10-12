@@ -114,3 +114,7 @@ This is a **demonstration project** and has the following limitations. Planned m
 For questions about this privacy design or suggestions for improvement, please open an issue in the repository.
 
 **Contact**: [GitHub Issues](https://github.com/indoscient/privacy-first/issues)
+
+---
+
+
