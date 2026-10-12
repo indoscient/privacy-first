@@ -30,7 +30,7 @@ All participants must adhere to the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). By
 2. **Clone your fork** locally:
 
    ```bash
-   git clone https://github.com/sumanjangili/privacy-first.git
+   git clone https://github.com/indoscient/privacy-first.git
    cd privacy-first
    ```
    

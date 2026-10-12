@@ -69,15 +69,18 @@ browser only       only in transit      displayed to user
 
 ## ⚠️ Limitations
 
-This is a **demonstration project** and has the following limitations:
+This is a **demonstration project** and has the following limitations. Planned mitigations are tracked in **[ROADMAP.md](ROADMAP.md)**.
 
-| Limitation | Mitigation for Production |
-|------------|---------------------------|
-| API key stored in `.env` | Use secure secrets management (AWS Secrets Manager, HashiCorp Vault) |
-| No key rotation | Implement periodic key regeneration + versioning |
-| No audit trail | Add signed, immutable logging (e.g., to append-only storage) |
-| No client-side authentication | Add user auth (OAuth, JWT) before allowing encryption access |
-| No HTTPS enforcement | Deploy behind reverse proxy (nginx, Cloudflare) with TLS |
+
+| Limitation | Mitigation for Production | Roadmap Item |
+|------------|---------------------------|--------------|
+| API key stored in `.env` | Use secure secrets management (AWS Secrets Manager, HashiCorp Vault) | [Secure secrets management](ROADMAP.md#production-hardening-required-before-deployment) |
+| No key rotation | Implement periodic key regeneration + versioning | [Key rotation with versioning](ROADMAP.md#production-hardening-required-before-deployment) |
+| No audit trail | Add signed, immutable logging (e.g., to append-only storage) | [Audit logging (ciphertext hashes + timestamps)](ROADMAP.md#near-term-recommended) |
+| No client-side authentication | Add user auth (OAuth, JWT) before allowing encryption access | [Client-side user authentication](ROADMAP.md#production-hardening-required-before-deployment) |
+| No HTTPS enforcement | Deploy behind reverse proxy (nginx, Cloudflare) with TLS | [HTTPS / TLS enforcement](ROADMAP.md#production-hardening-required-before-deployment) |
+
+> 💡 **Tip:** If deploying beyond demo purposes, review all items in **[Production Hardening](ROADMAP.md#production-hardening-required-before-deployment)** before go-live.
 
 ---
 
@@ -87,7 +90,7 @@ This is a **demonstration project** and has the following limitations:
 |------------|-----------|--------|
 | **GDPR Art. 25** (Privacy-by-design) | Applies if processing EU residents' data | ✅ Implemented for demo |
 | **CCPA/CPRA** | Applies if selling/handling California consumer data | ✅ No PII collected |
-| **SOC 2** | Required for enterprise SaaS providers | ⚠️ Not applicable (demo only) |
+| **SOC 2** | Required for enterprise SaaS providers | ⚠️ Not applicable (demo only) - see [SOC 2 groundwork](ROADMAP.md#future-explorations-low-priority) for future plans |
 
 ---
 
@@ -95,13 +98,14 @@ This is a **demonstration project** and has the following limitations:
 
 - [Client README](./client/README.md)
 - [Server README](./server/README.md)
+- [Roadmap](ROADMAP.md) — Track upcoming enhancements and production hardening items
 - [Full Demo Repository](https://github.com/indoscient/privacy-first)
 
 ---
 
 ## ✏️ Last Updated
 
-**2026-10-11** — Initial privacy design documentation.
+**2026-10-12** — Added cross-references to ROADMAP.md for limitations and compliance notes.
 
 ---
 
