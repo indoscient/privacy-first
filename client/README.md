@@ -24,7 +24,7 @@ It showcases how to use `libsodium-wrappers` in the browser for end-to-end encry
 
 From npm:
 ```bash
-npm install @indoscient/privacy-first-server
+npm install @indoscient/privacy-first-client
 ```
 
 Clone the demo and install dev dependencies:
@@ -42,6 +42,7 @@ Start a hot‑reloading dev server:
 npm run dev
 ```
 
+### Build & Preview
 Create a production-ready bundle:
 ```bash
 npm run build
