@@ -112,7 +112,7 @@ See our **[Privacy Design Decisions](../PRIVACY.md)** for details on how this cl
 **Key highlights**:
 - **Zero-knowledge**: Server never stores plaintext messages
 - **Minimal metadata**: Only auth failure warnings logged (no request bodies)
-- ** No persistence**: Ciphertext discarded immediately after decryption
+- **No persistence**: Ciphertext discarded immediately after decryption
 
 ---
 
