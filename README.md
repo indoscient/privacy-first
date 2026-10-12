@@ -2,7 +2,7 @@
 Help me build faster, more secure libraries for the community
 
 ## 🔐 Privacy‑First Encrypted Message Demo  
-*A tiny end‑to‑end encrypted mini‑app built with React, Vite, Node/Express and libsodium‑wrappers.*
+> **Monetize insights without exposing raw data. Privacy-first by design.**
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org/)    
