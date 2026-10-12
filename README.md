@@ -9,8 +9,29 @@ Help me build faster, more secure libraries for the community
 
 ---
 
+### Our Mission
+
+Enable data-driven value extraction while preserving end-to-end confidentiality through cryptographic guarantees rather than trust assumptions.
+
 ### What it does  
 This demo shows how a browser can encrypt a message with a recipient's public key, send the ciphertext to a server, and have the server decrypt it with its private key—all without ever transmitting the plaintext. It uses **libsodium‑wrappers**, the modern, audited NaCl implementation, keeping the cryptography solid while the code stays short.
+
+### How It Works
+
+| Traditional Model | Indos Model |
+|-------------------|-------------|
+| Raw data shared with buyers | Insights derived locally, only aggregated results transmitted |
+| PII exposure risk | Zero-knowledge architecture—plaintext never leaves owner's control |
+| Compliance overhead | Built-in GDPR/CCPA alignment via design |
+| Manual privacy reviews | Automated privacy controls via sealed-box encryption |
+
+
+### Use Cases
+
+- **Market Research** — Aggregate sentiment without accessing individual responses
+- **Analytics Partnerships** — Share metrics without revealing customer-level data
+- **ML Training** — Contribute encrypted embeddings to federated learning pipelines
+- **Auditing** — Prove compliance without exposing transaction details
 
 ---
 
@@ -22,9 +43,6 @@ This demo shows how a browser can encrypt a message with a recipient's public ke
 - **Rate limiting** — prevents abuse (20 req/15min on `/decrypt`).
 - **Security headers** — Helmet.js enforces HSTS, X-Frame-Options, etc.
 - **TypeScript** on both client and server for safety and autocompletion.
-
----
-
 
 ---
 
@@ -106,3 +124,5 @@ Please read our CONTRIBUTING.md for guidelines on how to propose changes, run te
 This project is licensed under the MIT License – see the LICENSE file for details.
 
 ---
+
+*Built with ❤️ by the Indos Team — Privacy First, Always.*
