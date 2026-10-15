@@ -5,7 +5,7 @@ import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfil
 import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
 
 export default defineConfig({
-+  base: '/privacy-first/',
+  base: '/privacy-first/',
   plugins: [react()],
   optimizeDeps: {
     include: ['libsodium-wrappers'],
@@ -19,7 +19,15 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      output: {}
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('libsodium')) return 'sodium';
+            if (id.includes('react') || id.includes('scheduler')) return 'vendor-react';
+            return 'vendor';
+          }
+        }
+      }
     }
   }
 });
