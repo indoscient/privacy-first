@@ -2,7 +2,8 @@
 
 Tracking upcoming enhancements, hardening work, and future explorations for the privacy-first encryption demo.
 
-**Current Progress:** 7 of 9 core review items complete (all critical and high-priority security items are done).
+**Last Updated:** 2026-10-15
+**Current Progress:** 6 of 9 core review items complete (all critical and high-priority security items are done).
 
 ---
 
@@ -11,7 +12,7 @@ Tracking upcoming enhancements, hardening work, and future explorations for the 
 | Item | Priority | Est. Effort | Status |
 |------|----------|-------------|--------|
 | Audit logging (ciphertext hashes + timestamps only, never plaintext) | Medium | ~2 hours | ⬜ Not started |
-| Remove remaining demo placeholders and verify client bundle | Low | ~5 min | ⬜ Not started |
+| /logs endpoint with admin auth | Low | ~2 hours | ⬜ Not started |
 
 ### Details
 
@@ -25,31 +26,14 @@ Tracking upcoming enhancements, hardening work, and future explorations for the 
 
 ## 🛡️ Production Hardening (Required Before Deployment)
 
-These items become blockers if you plan to use this beyond a demo:
-
 | Item | Why It Matters |
 |------|----------------|
 | Secure secrets management (Vault / AWS Secrets Manager) | Replace `.env`-stored API key and private key |
 | Key rotation with versioning | Static Curve25519 key pair limits blast radius of leaked private key |
 | HTTPS / TLS enforcement via reverse proxy (nginx, Cloudflare) | Sealed-box protects content, not transport metadata |
 | Client-side user authentication (OAuth or JWT) | Prevents anonymous use of the encryption API |
+| Multi-tenant organization support | Enable org isolation, RBAC, team management |
 | Signed, append-only audit trail | Enables tamper-evident accountability for enterprise settings |
-
-### Implementation Notes
-
-**Secrets Management:**
-
-.env (demo) → AWS Secrets Manager / HashiCorp Vault (production)
-
-**Key Rotation:**
-- Regenerate Curve25519 key pairs periodically
-- Maintain versioned public keys for backward compatibility
-- Document rotation schedule and procedures
-
-**TLS Enforcement:**
-- Deploy behind Nginx, Cloudflare, or equivalent reverse proxy
-- Force HTTPS redirects at infrastructure level
-- Enable HSTS headers (already done via Helmet, but enforcement needed)
 
 ---
 
@@ -57,8 +41,7 @@ These items become blockers if you plan to use this beyond a demo:
 
 | Item | Est. Effort | Description |
 |------|-------------|-------------|
-| Zero-knowledge sender verification | ~3–4 hours | Ed25519 detached signatures (`crypto_sign_detached`) so senders prove identity without trusting API key alone |
-| `/logs` endpoint with admin auth | ~2 hours | Surface audit-log history to operators without exposing plaintext |
+| Zero-znowledge sender verification | ~3–4 hours | Ed25519 detached signatures so senders prove identity without trusting API key alone |
 | SOC 2 compliance groundwork | TBD | Currently "not applicable (demo only)" — revisit if offered as service |
 
 ---
@@ -67,11 +50,11 @@ These items become blockers if you plan to use this beyond a demo:
 
 When leaving demo stage:
 
-| Component | Recommended Platform | Notes |
-|-----------|---------------------|-------|
-| Backend (Express API) | Render or Fly.io | Always-on required |
-| Frontend (Static assets) | Vercel or Netlify | Optimized for SPAs |
-| CDN / WAF (optional) | Cloudflare | Adds caching, DDoS protection, geographic routing |
+| Component | Platform | Notes |
+|-----------|----------|-------|
+| Backend (Express API) | Render / Fly.io | Always-on required |
+| Frontend (Static assets) | GitHub Pages / Vercel / Netlify | GitHub Pages free for demos; Vercel/Netlify for enterprise |
+| CDN / WAF (optional) | Cloudflare | Caching, DDoS protection, geographic routing |
 
 ---
 
@@ -87,19 +70,6 @@ When leaving demo stage:
 
 ---
 
-## 🤝 Contributing to the Roadmap
-
-Interested in working on any of these items?
-
-1. Check existing issues first to avoid duplicate efforts
-2. Comment on the relevant GitHub Issue to claim it
-3. Reference the issue number in your PR description
-4. Tag maintainers for review upon completion
-
-**Contact:** [GitHub Issues](https://github.com/indoscient/privacy-first/issues)
-
----
-
 ## 📝 Version History
 
 | Date | Change |
@@ -108,5 +78,4 @@ Interested in working on any of these items?
 
 ---
 
-*This roadmap reflects community priorities and may evolve. For real-time progress, see the [Issues page](https://github.com/indoscient/privacy-first/issues).*
-
+*For real-time progress, see the [Issues page](https://github.com/indoscient/privacy-first/issues).*
