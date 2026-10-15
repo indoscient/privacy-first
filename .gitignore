@@ -40,6 +40,8 @@ tsconfig.tsbuildinfo
 
 # ==== Environment files ======================
 .env
+**/.env
+.env*
 .env.local
 .env.*.local
 client/.env
