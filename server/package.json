@@ -1,7 +1,6 @@
 {
   "name": "@indoscient/privacy-first-server",
-  "version": "0.1.7",
-  "__comment": "Server side of the privacy‑first demo – tiny Express API",
+  "version": "0.1.9",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "gen:keypair": "ts-node src/generate-keypair.ts",
@@ -42,7 +41,7 @@
   "bugs": {
     "url": "https://github.com/indoscient/privacy-first/issues"
   },
-  "homepage": "https://github.com/indoscient/privacy-first",
+  "homepage": "https://privacy.indoscient.in",
   "files": [
     "dist",
     "README.md"

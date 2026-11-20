@@ -1,7 +1,6 @@
 {
   "name": "@indoscient/privacy-first-client",
   "version": "0.1.9",
-  "__comment": "Client side of the privacy‑first demo – React + TypeScript + Vite",
   "scripts": {
     "lint": "eslint src --ext .ts,.tsx",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
@@ -32,12 +31,6 @@
     "vite": "^7.2.2"
   },
   "description": "A privacy‑first client built with React + TypeScript + Vite",
-  "main": "dist/index.html",
-  "keywords": [
-    "typescript",
-    "react",
-    "vite"
-  ],
   "author": "Suman Jangili",
   "license": "MIT",
   "repository": {
@@ -48,9 +41,8 @@
   "bugs": {
     "url": "https://github.com/indoscient/privacy-first/issues"
   },
-  "homepage": "https://github.com/indoscient/privacy-first",
+  "homepage": "https://privacy.indoscient.in",
   "files": [
-    "dist",
     "README.md"
   ]
 }

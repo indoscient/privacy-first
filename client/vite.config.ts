@@ -5,7 +5,7 @@ import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfil
 import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
 
 export default defineConfig({
-  base: '/privacy-first/',
+  base: '/',
   plugins: [react()],
   optimizeDeps: {
     include: ['libsodium-wrappers'],
