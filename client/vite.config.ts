@@ -9,7 +9,6 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     include: ['libsodium-wrappers'],
-    noExternal: ['libsodium-wrappers'],
     esbuildOptions: {
       plugins: [
         NodeGlobalsPolyfillPlugin({ buffer: true }),

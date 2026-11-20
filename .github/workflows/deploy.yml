@@ -1,0 +1,50 @@
+# .github/workflows/deploy.yml
+name: Deploy client to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}          # lets you trigger manual deploys from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages                   # prevents two deploys racing each other
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install client dependencies
+        run: npm ci
+        working-directory: client
+
+      - name: Build client
+        run: npm run build
+        working-directory: client
+        env:
+          VITE_SERVER_PUBLIC_KEY: ${{ secrets.VITE_SERVER_PUBLIC_KEY }}
+          VITE_API_URL: https://your-hosted-server.example/decrypt
+          VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: client/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
