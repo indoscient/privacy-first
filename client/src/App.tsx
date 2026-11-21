@@ -59,7 +59,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   return (
     <div className="container">
-      <h1>🔐 End‑to‑End Demo</h1>
+      <h1>🔐 Privacy-first infrastructure</h1>
 
       {error && <p className="error">{error}</p>}
 

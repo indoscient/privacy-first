@@ -1,15 +1,14 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  /** URL of the backend API (optional) */
+  /** Backend API URL; falls back to http://localhost:4000/decrypt in App.tsx */
   readonly VITE_API_URL?: string;
-  // add any other VITE_… variables you use, e.g.:
-  // readonly VITE_OTHER_VAR: string;
+  /** Server's libsodium public key (Base-64, ORIGINAL variant) */
+  readonly VITE_SERVER_PUBLIC_KEY?: string;
+  /** API key sent as X-API-Key header — NOTE: bundled into client JS, treat as public */
+  readonly VITE_API_KEY?: string;
 }
 
-/**
- * Extends the built‑in ImportMeta interface with the `env` field.
- */
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
