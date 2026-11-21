@@ -11,7 +11,7 @@ Tracking upcoming enhancements, hardening work, and future explorations for the 
 
 | Item | Priority | Est. Effort | Status |
 |------|----------|-------------|--------|
-| Audit logging (ciphertext hashes + timestamps only, never plaintext) | Medium | ~2 hours | ⬜ Not started |
+| [Audit logging (ciphertext hashes + timestamps)] only, never plaintext | Medium | ~2 hours | ⬜ Not started |
 | /logs endpoint with admin auth | Low | ~2 hours | ⬜ Not started |
 
 ### Details
@@ -41,7 +41,7 @@ Tracking upcoming enhancements, hardening work, and future explorations for the 
 
 | Item | Est. Effort | Description |
 |------|-------------|-------------|
-| Zero-znowledge sender verification | ~3–4 hours | Ed25519 detached signatures so senders prove identity without trusting API key alone |
+| Zero-knowledge sender verification | ~3–4 hours | Ed25519 detached signatures so senders prove identity without trusting API key alone |
 | SOC 2 compliance groundwork | TBD | Currently "not applicable (demo only)" — revisit if offered as service |
 
 ---
@@ -53,7 +53,7 @@ When leaving demo stage:
 | Component | Platform | Notes |
 |-----------|----------|-------|
 | Backend (Express API) | Render / Fly.io | Always-on required |
-| Frontend (Static assets) | GitHub Pages / Vercel / Netlify | GitHub Pages free for demos; Vercel/Netlify for enterprise |
+| Frontend (Static assets) | GitHub Pages | GitHub Pages free for demos |
 | CDN / WAF (optional) | Cloudflare | Caching, DDoS protection, geographic routing |
 
 ---

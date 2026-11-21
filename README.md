@@ -1,55 +1,74 @@
 [![Sponsor Me](https://img.shields.io/badge/Sponsor-💖-orange)](https://github.com/sponsors/sumanjangili)
 Help me build faster, more secure libraries for the community
 
-## 🔐 Privacy‑First Encrypted Message Demo  
-> **Monetize insights without exposing raw data. Privacy-first by design.**
+## 🔐 Privacy-first Infra
+> **Privacy-first infrastructure — client-side sealed-box encryption with minimal data collection.**
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  
-[![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org/)    
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org/)
 
 ---
 
 ### Our Mission
 
-Enable data-driven value extraction while preserving end-to-end confidentiality through cryptographic guarantees rather than trust assumptions.
+Enable data-driven value extraction while preserving confidentiality through
+cryptographic guarantees rather than trust assumptions. This demo is the first
+milestone: **privacy-first infrastructure built on client-side encryption** —
+a stepping stone toward zero-knowledge, user-controlled cryptography as
+tracked in the [ROADMAP](ROADMAP.md).
 
-### What it does  
-This demo shows how a browser can encrypt a message with a recipient's public key, send the ciphertext to a server, and have the server decrypt it with its private key—all without ever transmitting the plaintext. It uses **libsodium‑wrappers**, the modern, audited NaCl implementation, keeping the cryptography solid while the code stays short.
+### What It Does
+
+This demo shows how a browser can encrypt a message with the recipient's
+public key (libsodium sealed-box, `crypto_box_seal`) and send only ciphertext
+to a server. The server decrypts **in memory** with its private key and
+returns the result — plaintext is never stored, logged, or persisted anywhere.
+It uses **libsodium-wrappers**, the modern, audited NaCl implementation,
+keeping the cryptography solid while the code stays short.
+
+> **Honest scope note:** the server is the designated decryption endpoint, so
+> it sees plaintext transiently in memory. True zero-knowledge (where the
+> server can never decrypt) is the *destination* on our
+> [roadmap](ROADMAP.md), not the current state.
 
 ### How It Works
 
-| Traditional Model | Indos Model |
-|-------------------|-------------|
-| Raw data shared with buyers | Insights derived locally, only aggregated results transmitted |
-| PII exposure risk | Zero-knowledge architecture—plaintext never leaves owner's control |
-| Compliance overhead | Built-in GDPR/CCPA alignment via design |
-| Manual privacy reviews | Automated privacy controls via sealed-box encryption |
-
-
-### Use Cases
-
-- **Market Research** — Aggregate sentiment without accessing individual responses
-- **Analytics Partnerships** — Share metrics without revealing customer-level data
-- **ML Training** — Contribute encrypted embeddings to federated learning pipelines
-- **Auditing** — Prove compliance without exposing transaction details
+| Traditional Model | This Demo |
+|-------------------|-----------|
+| Raw data shared with any requester | Client-side encryption — only ciphertext crosses the network |
+| Plaintext stored in databases/logs | Nothing persisted: ciphertext in transit, plaintext in memory only |
+| Trust assumed, not verified | Fail-closed API auth, rate limiting, CORS whitelist, security headers |
+| Privacy review as afterthought | Privacy design decisions documented in [PRIVACY.md](PRIVACY.md) |
 
 ---
 
-### Features   
-- **End-to-end encryption** using X25519 + XSalsa20‑Poly1305 (libsodium sealed-box `crypto_box_seal`).
-- **Forward secrecy** — ephemeral keys generated per message.
-- **Zero-knowledge transport** – only ciphertext travels over HTTP (no plaintext, nonces, or key material exposed).
-- **API authentication** — API key middleware protects decryption endpoints.
-- **Rate limiting** — prevents abuse (20 req/15min on `/decrypt`).
+### Features
+
+- **Client-side encryption** using X25519 + XSalsa20-Poly1305 (libsodium
+  sealed-box `crypto_box_seal`) — only ciphertext ever crosses the wire.
+- **Ephemeral sender keys per message** — each sealed box uses a fresh
+  ephemeral keypair, providing sender unlinkability. *(Note: this is not
+  forward secrecy — a compromised server private key can decrypt past
+  messages. Key rotation is on the [roadmap](ROADMAP.md).)*
+- **Encrypted payload transport** — no plaintext, and no long-term key
+  material, is exposed in transit.
+- **Fail-closed API authentication** — if `API_KEY` is not configured, the
+  decryption endpoint rejects every request (503).
+- **Rate limiting** — 100 req/15min global, 20 req/15min on `/decrypt`.
 - **Security headers** — Helmet.js enforces HSTS, X-Frame-Options, etc.
-- **TypeScript** on both client and server for safety and autocompletion.
+- **Payload cap & timing-safe auth** — 64kb body limit and constant-time
+  key comparison.
+- **TypeScript** on both client and server.
+- **Live demo** deployed via GitHub Actions to
+  [privacy.indoscient.in](https://privacy.indoscient.in).
 
 ---
 
-### Prerequisites  
-- **Node ≥ 18** (native ESM support)  
-- **npm** (or yarn/pnpm)  
-- Git  
+### Prerequisites
+
+- **Node ≥ 18** (native ESM support)
+- **npm** (or yarn/pnpm)
+- Git
 
 ---
 
@@ -67,7 +86,7 @@ cd client && npm install
 cd ../server && npm install
 
 # 4. Generate server key pair (run once)
-npm run gen:keypair
+npm run gen:keypair      # ⚠️ verify this matches the script name in server/package.json
 
 # 5. Copy outputs to .env files
 # server/.env: PRIVATE_KEY, API_KEY, ALLOWED_ORIGINS
@@ -79,50 +98,56 @@ npm run gen:keypair
 ### Configuration
 Create .env files before starting:
 ```bash
-server/.env:
-
+# server/.env
 PRIVATE_KEY=<from gen:keypair output>
 API_KEY=<random 32-byte hex string>
 ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000
 PORT=4000
 
-client/.env:
-
+# client/.env
 VITE_SERVER_PUBLIC_KEY=<from gen:keypair output>
 VITE_API_URL=http://localhost:4000/decrypt
 VITE_API_KEY=<same value as server/API_KEY>
 ```
+> Every VITE_* variable is compiled into the shipped JavaScript bundle and readable by anyone with DevTools. Treat VITE_API_KEY as rate-limit friction, not a secret. See [PRIVACY.md](PRIVACY.md) → Limitations.
 
-### Usage
-1. Terminal 1 – start the API:
-   ```bash
+**Usage**
+
+1. Terminal 1 — start the API:
+```bash
    cd server && npm run dev
-   ```
-3. Terminal 2 – start the React dev server:
-   ```bash
+```
+2. Terminal 2 — start the React dev server:
+```bash
    cd client && npm run dev
-   ```
+```
 
 ---
 
 ### Documentation
 
 | Resource | Description |
-|----------|-------------|
-| **[Client README](./client/README.md)** | Front-end setup, scripts, and usage |
-| **[Server README](./server/README.md)** | Back-end endpoints, security controls |
-| **[Privacy Design Decisions](./PRIVACY.md)** | Privacy-by-design controls and data flow |
+|-------------------|-----------|
+| Client README | Front-end setup, scripts, and usage |
+| Server README | Back-end endpoints, security controls |
+| [Privacy Design Decisions](PRIVACY.md) | Privacy-by-design controls, data flow, verified limitations |
+| [Roadmap](ROADMAP.md) | Enhancement tracking and production-hardening items |
+| Security Policy | Vulnerability reporting and supported versions |
+| Contributing | Dev environment, standards, PR process |
+| Code of Conduct | Community standards and enforcement |
 
 ---
 
 ### Contributing
-Please read our CONTRIBUTING.md for guidelines on how to propose changes, run tests, and submit pull requests.
+
+Please read our CONTRIBUTING.md for guidelines on how to propose changes, run checks, and submit pull requests. Contributions that close roadmap gaps (key rotation, short-lived tokens, TLS enforcement) are especially welcome.
 
 ---
 
 ### License
-This project is licensed under the MIT License – see the LICENSE file for details.
+
+This project is licensed under the MIT License — see the LICENSE file for details.
 
 ---
 
-*Built with ❤️ by the Indos Team — Privacy First, Always.*
+Built with ❤️ by the Indos Team — Privacy First, Always.
