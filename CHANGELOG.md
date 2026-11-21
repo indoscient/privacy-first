@@ -91,7 +91,7 @@ Package versions bumped from 0.1.9 to align with the existing tag lineage
 - Toolchain verified end-to-end: server `typecheck` + `build`, client
   `lint` + `typecheck` + `build`, `gen:keypair`, and `sanity` all pass.
 
-## [1.0.1] - 2026-01-21 (legacy)
+## [1.0.1] - 2026-01-23 (legacy)
 
 Tag applied to documentation housekeeping commits ("chore: bump to 1.0.1");
 no corresponding package publish. See commit history for details. Package
