@@ -66,7 +66,7 @@ keeping the cryptography solid while the code stays short.
 
 ### Prerequisites
 
-- **Node ≥208** (native ESM support)
+- **Node ≥28** (native ESM support)
 - **npm**
 - Git
 
