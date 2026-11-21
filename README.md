@@ -5,7 +5,7 @@ Help me build faster, more secure libraries for the community
 > **Privacy-first infrastructure — client-side sealed-box encryption with minimal data collection.**
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D20-brightgreen.svg)](https://nodejs.org/)
 
 ---
 
@@ -66,8 +66,8 @@ keeping the cryptography solid while the code stays short.
 
 ### Prerequisites
 
-- **Node ≥ 18** (native ESM support)
-- **npm** (or yarn/pnpm)
+- **Node ≥208** (native ESM support)
+- **npm**
 - Git
 
 ---

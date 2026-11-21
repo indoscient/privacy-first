@@ -68,11 +68,11 @@ outlined standards.
 5. **Generate a keypair** (one-off, per environment):
    ```bash
    cd server
-   npm run generate-keypair   # prints PRIVATE and PUBLIC base64 strings
+   npm run gen:keypair   # prints PRIVATE and PUBLIC base64 strings
    ```
 6. **Validate your private key** before first run:
    ```bash
-   npm run sanity-check       # confirms a valid 32-byte secret key
+   npm run sanity       # confirms a valid 32-byte secret key
    ```
 ---
 
@@ -123,16 +123,15 @@ cd client && npm run dev
 ### Testing & Validation
 Before pushing, run the full check suite locally:
 ```bash
-# Type-check both packages (matches what CI enforces)
-cd server && npx tsc --noEmit && cd ..
-cd client && npx tsc --noEmit && cd ..
+# Type-check both packages
+npm run typecheck --prefix server
+npm run typecheck --prefix client
 
-# Build both packages
-npm run build --prefix server
-npm run build --prefix client
+# Lint the client
+npm run lint --prefix client
 
 # Key round-trip sanity: generate keypair, configure both .env files,
-# send a message through the running stack and confirm the decrypted
+# send a message through the UI and confirm the decrypted
 # response matches the input.
 ```
 

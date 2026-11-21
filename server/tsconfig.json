@@ -1,19 +1,29 @@
 {
   "compilerOptions": {
-    "target": "ES2022",                 // supports top‑level await (if you ever need it)
-    "module": "CommonJS",               // keeps Node's default require system
+    /* Basic Options */
+    "target": "ES2022",
+    "module": "CommonJS",
     "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2022"],
     "outDir": "./dist",
     "sourceMap": true,
-    "noEmitOnError": true,
     "declaration": true,
-    "incremental": true,
-    "typeRoots": ["./node_modules/@types", "./typings"]   // omit "./typings" unless you added custom .d.ts files
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+
+    /* Strictness */
+    "strict": true,
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+
+    /* Performance */
+    "incremental": true
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist"] 
+  "exclude": ["node_modules", "dist"]
 }

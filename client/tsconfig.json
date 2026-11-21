@@ -8,27 +8,25 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
 
+    /* Strictness */
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+
     /* JSX / React */
     "jsx": "react-jsx",
-    "jsxImportSource": "react",
-
-    /* Path aliases (optional) */
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "jsxImportSource": "react"
   },
 
-  /* Files to include in the compilation */
   "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts"],
 
-  /* Exclude generated files and node_modules */
   "exclude": ["node_modules", "dist"]
 }

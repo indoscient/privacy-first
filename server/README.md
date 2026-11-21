@@ -106,9 +106,9 @@ Generate a new key pair:
 ```bash
 npm run gen:keypair
 ```
-Then validate the private key before first run:
+Then validate the private key before first:
 ```bash
-npx ts-node sanity-check.ts   # confirms a valid 32-byte secret key
+npx ts-node sanity-check.ts to: npm run sanity  # confirms a valid 32-byte secret key
 ```
 
 ---
