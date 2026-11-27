@@ -1,0 +1,44 @@
+{
+  "name": "@indoscient/privacy-first-api",
+  "version": "0.1.9",
+  "private": true,
+  "description": "Netlify Functions backend for the privacy-first demo: sealed-box decryption endpoint",
+  "author": "Suman Jangili",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "netlify dev",
+    "deploy": "netlify deploy --prod",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "netlify-functions",
+    "typescript",
+    "libsodium"
+  ],
+  "dependencies": {
+    "@netlify/functions": "^6.1.2",
+    "libsodium-wrappers": "0.7.13"
+  },
+  "devDependencies": {
+    "@types/libsodium-wrappers": "^0.7.14",
+    "netlify-cli": "^27.20.1",
+    "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "glob": "^14.0.2",
+    "minimatch": "^11.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indoscient/privacy-first.git",
+    "directory": "api"
+  },
+  "bugs": {
+    "url": "https://github.com/indoscient/privacy-first/issues"
+  },
+  "homepage": "https://privacy.indoscient.in"
+}

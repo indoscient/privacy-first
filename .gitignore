@@ -17,6 +17,7 @@ Desktop.ini
 node_modules/
 client/node_modules
 server/node_modules
+api/node_modules
 yarn.lock                  # same comment as above
 pnpm-lock.yaml
 
@@ -46,6 +47,11 @@ tsconfig.tsbuildinfo
 .env.*.local
 client/.env
 server/.env
+
+# ==== api files =========
+api/.env
+api/.netlify/
+api/deno.lock
 
 # ==== Test / Coverage ==============================================
 coverage/

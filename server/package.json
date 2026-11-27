@@ -30,5 +30,22 @@
   "bugs": {
     "url": "https://github.com/indoscient/privacy-first/issues"
   },
-  "homepage": "https://privacy.indoscient.in"
+  "homepage": "https://privacy.indoscient.in",
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/libsodium-wrappers": "^0.7.14",
+    "@types/node": "^26.6.11",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.5",
+    "helmet": "^8.3.0",
+    "libsodium-wrappers": "^0.8.4"
+  }
 }

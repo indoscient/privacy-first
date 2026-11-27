@@ -1,9 +1,10 @@
 # .github/workflows/deploy.yml
-name: Deploy client to Pages
+name: Verify and deploy client to Pages
 
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch: {}          # lets you trigger manual deploys from the Actions tab
 
 permissions:
@@ -12,17 +13,57 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages                   # prevents two deploys racing each other
-  cancel-in-progress: false
+  group: pages-${{ github.ref }}                   # prevents two deploys racing each other
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        workspace: [client, api, server]
+    defaults:
+      run:
+        working-directory: ${{ matrix.workspace }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20       # matches the deploy job and engines.node >=20
+          cache: npm
+          cache-dependency-path: ${{ matrix.workspace }}/package-lock.json
+
+      - run: npm ci              # strict lockfile install; validates overrides too
+
+      - name: Dependency audit
+        run: npm audit --audit-level=moderate
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint               # client only; api/server have no lint script
+        run: npm run lint
+        if: matrix.workspace == 'client'
+
   deploy:
+    needs: verify                # runs only if ALL THREE workspaces pass
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Verify deploy config
+        env:
+          API_URL: ${{ vars.VITE_API_URL }}
+        run: |
+          if [ -z "$API_URL" ]; then
+            echo "::error::VITE_API_URL repo variable is not set"
+            exit 1
+          fi
 
       - uses: actions/setup-node@v4
         with:
@@ -37,7 +78,7 @@ jobs:
         working-directory: client
         env:
           VITE_SERVER_PUBLIC_KEY: ${{ secrets.VITE_SERVER_PUBLIC_KEY }}
-          VITE_API_URL: https://your-hosted-server.example/decrypt
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
           VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
 
       - name: Upload Pages artifact

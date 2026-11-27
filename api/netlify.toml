@@ -1,0 +1,4 @@
+[build]
+  publish = "public"   # dummy dir for a functions-only site; create api/public/.gitkeep
+[functions]
+  directory = "netlify/functions"
